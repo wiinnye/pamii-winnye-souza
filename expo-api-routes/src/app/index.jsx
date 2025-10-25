@@ -2,12 +2,12 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCC4EYv7ygwg7iI4pFYQtZQxcBvK4FztzI",
-  authDomain: "meu-primeiro-firebase-b1af2.firebaseapp.com",
-  projectId: "meu-primeiro-firebase-b1af2",
-  storageBucket: "meu-primeiro-firebase-b1af2.firebasestorage.app",
-  messagingSenderId: "803074805083",
-  appId: "1:803074805083:web:798a417a8bd953723e1e7e"
+  apiKey: process.env.EXPO_PUBLIC_APIKEY,
+  authDomain: process.env.EXPO_PUBLIC_AUTHDOMAIN,
+  projectId: process.env.EXPO_PUBLIC_PROJECTID,
+  storageBucket:process.env.EXPO_PUBLIC_STORAGEBUCKET,
+  messagingSenderId: process.env.EXPO_PUBLIC_MESSAGINSENDERID,
+  appId: process.env.EXPO_PUBLIC_APPID
 };
 
 // Initialize Firebase
@@ -37,14 +37,42 @@ export default function App(){
   }, []);
 
   return(
-    <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
-      <Text>Lista de Nomes:</Text>
+    <View 
+      style={{
+      width:"100%", 
+      height:"100%",
+      backgroundColor: "#fce2e2ff",
+      justifyContent:'center',
+      alignItems:'center'}}>
+        <View
+      style={{
+      width:"100%", 
+      height:'20%',
+      backgroundColor: "#de4242ff",
+      justifyContent:'center',
+      alignItems:'center',
+      }}
+      >
+        <Text style={{fontSize:"25px"}}>Lista de Nomes:</Text>
+      </View>
+      
       <FlatList 
       data={nomes}
       keyExtractor={(item) => item.id}
       renderItem={({item}) => (
-        <View>
-          <Text>{item.Nome} {item.Sobrenome}</Text>
+        <View
+        style={{
+      width:"100%", 
+      height:'auto',
+      padding:"1rem",
+      margin:'1rem',
+      backgroundColor: "#de4242ff",
+      justifyContent:'center',
+      alignItems:'center',
+
+      text:hover{ background-color:"#dcde42ff"},
+      }}>
+          <Text  style={{fontSize:"20px"}}>{item.Nome} {item.Sobrenome}</Text>
         </View>
       )}
       />
